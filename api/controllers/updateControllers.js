@@ -54,7 +54,7 @@ module.exports = {
             let imageResponse = await cloudinary.uploader.upload(imageContent)
             await schema.findOneAndUpdate({ _id: user._id }, { profilePicture: imageResponse.secure_url })
                 
-            res.status(202).send({message:"uploaded Profile picture successfully"})
+            res.status(202).send({message:"uploaded Profile picture successfully", profilePicture: imageResponse.secure_url})
         } catch (error) {
             return res.status(500).send({error:error.message})
         }
